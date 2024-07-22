@@ -1,11 +1,12 @@
 {
   "manifest_version": 3,
-  "name": "Remove Affiliates",
-  "version": "0.0.1",
-  "description": "A Chrome Extension to remove query strings from URLs for Shopee and Lazada.",
+  "name": "Clean Link",
+  "version": "0.0.1.0",
+  "description": "A Chrome Extension to Remove Affiliates & Remove query strings from URLs for e-Commerce platform.",
   "permissions": [
     "tabs",
-    "webNavigation"
+    "webNavigation",
+    "storage"
   ],
   "background": {
     "service_worker": "background.js"
@@ -45,5 +46,8 @@
         "mac": "Command+B"
       }
     }
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
   }
 }
