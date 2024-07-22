@@ -2,13 +2,32 @@
 <html lang="en">
 
 <head>
-  <title>Remove Query Strings</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clean Link</title>
   <link rel="stylesheet" href="popup.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css">
 </head>
 
 <body>
-  <button id="removeQueryStrings">Remove Query Strings</button>
-  <script src="background.js"></script>
+  <div class="has-text-white" style="text-align: end; justify-content: flex-end;display: flex;
+  align-items: center;">
+    Status: <button style="margin: 5px; " id="active-btn"></button>
+  </div>
+  <section class="" style="margin: 10px;">
+    <div class="hero-body">
+      <p class="title">Clean Link!</p>
+      <p class="is-size-7">A Chrome Extension to Remove Affiliates & Remove query strings from
+        URLs for e-Commerce
+        platform.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <p class="is-size-7 has-background-grey-dark" id="date-right"></p>
+  </footer>
+  <script src="popup.js"></script>
 </body>
 
 </html>
