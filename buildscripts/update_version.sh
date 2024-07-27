@@ -22,4 +22,4 @@ new_version=$(IFS='.'; echo "${version_parts[*]}")
 
 jq --arg version "$new_version" '.version = $version' "$JSON_FILE" > temp.json && mv temp.json "$JSON_FILE"
 
-echo "Updated version from $current_version to $new_version in $JSON_FILE"
+echo "Updated version from $current_version to $new_version"
