@@ -1,6 +1,6 @@
 const STATUS_ACTIVE = {
-  ACTIVE: "Active",
-  INACTIVE: "Inactive",
+  ON: "ON",
+  OFF: "OFF",
 };
 
 const BTN_ACTIVE = {
@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", async () => {
   const activeBtn = document.getElementById("active-btn");
+  const cleanLinkLabel = document.getElementById("title-app");
 
   async function updateStatus() {
     try {
@@ -25,9 +26,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       const status =
         result.status_active !== undefined ? result.status_active : false;
       activeBtn.className = status ? BTN_ACTIVE.ACTIVE : BTN_ACTIVE.INACTIVE;
-      activeBtn.textContent = status
-        ? STATUS_ACTIVE.ACTIVE
-        : STATUS_ACTIVE.INACTIVE;
+      activeBtn.textContent = status ? STATUS_ACTIVE.ON : STATUS_ACTIVE.OFF;
+      cleanLinkLabel.className = status
+        ? "title has-text-primary"
+        : "title has-text-grey-light";
     } catch (error) {
       console.error("Error updating status:", error);
     }
