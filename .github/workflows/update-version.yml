@@ -20,12 +20,20 @@ jobs:
         run: chmod +x buildscripts/update_version.sh
 
       - name: Update version
-        run: ./buildscripts/update_version.sh
+        id: update_version
+        run: |
+          new_version=$(./buildscripts/update_version.sh)
+          echo "NEW_VERSION=$new_version" >> $GITHUB_ENV
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
 
       - name: Commit and push changes
-        uses: EndBug/add-and-commit@v9
-        with:
-          add: "manifest.json"
-          message: "Update version"
+        run: |
+          git add manifest.json
+          git commit -m "${{ env.NEW_VERSION }}"
+          git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
