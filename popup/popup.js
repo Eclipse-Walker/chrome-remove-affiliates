@@ -1,19 +1,50 @@
-const STATUS_ACTIVE = {
+export const STATUS_ACTIVE = {
   ON: "ON",
   OFF: "OFF",
 };
 
-const BTN_ACTIVE = {
+export const BTN_ACTIVE = {
   ACTIVE: "button is-small is-primary",
   INACTIVE: "button is-small is-danger",
 };
 
+document.addEventListener("DOMContentLoaded", async () => {
+  try {
+    const [tab] = await chrome.tabs.query({
+      active: true,
+      lastFocusedWindow: true,
+    });
+
+    if (tab?.url) {
+      const url = new URL(tab.url);
+      const hostname = url.hostname;
+
+      const currentUrlElement = document.getElementById("current-url");
+      if (currentUrlElement) {
+        currentUrlElement.innerHTML = hostname;
+      } else {
+        console.error('Element with ID "current-url" not found');
+      }
+    } else {
+      console.error("Tab or tab.url is undefined");
+    }
+  } catch (error) {}
+});
+
 document.addEventListener("DOMContentLoaded", () => {
-  const dateCopyRight = "© "
-    .concat(new Date().getFullYear())
-    .concat(" Eclipse-Walker");
-  const dateCopyRightElement = document.getElementById("date-right");
-  dateCopyRightElement.innerHTML = dateCopyRight;
+  const getCopyrightText = () => {
+    const year = new Date().getFullYear();
+    return `© ${year} Eclipse-Walker`;
+  };
+
+  const copyrightText = getCopyrightText();
+  const dateCopyrightElement = document.getElementById("date-right");
+
+  if (dateCopyrightElement) {
+    dateCopyrightElement.innerHTML = copyrightText;
+  } else {
+    console.error('Element with ID "date-right" not found');
+  }
 });
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -27,6 +58,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         result.status_active !== undefined ? result.status_active : false;
       activeBtn.className = status ? BTN_ACTIVE.ACTIVE : BTN_ACTIVE.INACTIVE;
       activeBtn.textContent = status ? STATUS_ACTIVE.ON : STATUS_ACTIVE.OFF;
+
       cleanLinkLabel.className = status
         ? "title has-text-primary"
         : "title has-text-grey-light";
@@ -43,6 +75,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const currentStatus =
         result.status_active !== undefined ? result.status_active : false;
       const newStatus = !currentStatus;
+
       await chrome.storage.local.set({ status_active: newStatus });
       await updateStatus();
     } catch (error) {
