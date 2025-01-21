@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "chrome-remove-affiliates",
+  "version": "0.0.1",
+  "description": "A Chrome Extension to Remove Affiliates & Remove query strings from URLs for e-Commerce platform",
+  "action": {
+    "default_popup": "index.html"
+  },
+  "permissions": []
+}
