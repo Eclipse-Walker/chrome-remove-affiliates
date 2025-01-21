@@ -10,5 +10,3 @@
 1. Enable Developer mode (toggle the switch at the top right)
 1. Click "Load unpacked" and select your project folder `/path/to/file/chrome-extension-remove-affiliates`
 1. The extension will appear in Chrome, and you can click the icon to toggle its functionality
-
-
