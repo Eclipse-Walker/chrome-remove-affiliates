@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Clean Link",
-  "version": "0.0.4.0",
+  "version": "0.0.5.0",
   "description": "A Chrome Extension to Remove Affiliates & Remove query strings from URLs for e-Commerce platform.",
   "permissions": [
     "tabs",
