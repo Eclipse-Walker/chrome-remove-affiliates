@@ -6,5 +6,20 @@
   "action": {
     "default_popup": "index.html"
   },
-  "permissions": []
+  "permissions": [
+    "tabs",
+    "webNavigation",
+    "storage"
+  ],
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+B",
+        "mac": "Command+B"
+      }
+    }
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
 }
